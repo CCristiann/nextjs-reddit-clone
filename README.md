@@ -14,7 +14,7 @@ Reddit clone made with NextJS 14
 » MongoDB \
 » Prisma \
 » TypeScript \
-» Tailwindcss \
+» Tailwindcss
 
 **Main features:**
 * Modern data fetching using [React-Query](https://tanstack.com/query/v3/)
