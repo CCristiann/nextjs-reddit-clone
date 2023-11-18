@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     console.log(err)
     return NextResponse.json("Something went wrong. Please try later.", {
-      status: 200,
+      status: 500,
     });
   }
 }
