@@ -6,7 +6,7 @@
 
 Reddit clone made with NextJS 14
 
-👉 **Live Demo**: [Live Demo](https://x-ccristiann.vercel.app)
+👉 **Live Demo**: [Live Demo](https://reddit-ccristiann.vercel.app)
 
 **Build with:** \
 » Next JS \
