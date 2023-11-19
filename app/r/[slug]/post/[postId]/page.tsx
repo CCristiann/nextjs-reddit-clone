@@ -1,17 +1,19 @@
-import { redis } from "@/libs/redis";
-import { CachedPost } from "@/types/redis";
-import { Comment, Post, Subreddit, User, Vote, VoteType } from "@prisma/client";
 import React from "react";
 
-import prisma from "@/libs/prismadb";
+import { currentUser } from "@/libs/auth";
 import { notFound } from "next/navigation";
-import Icons from "@/components/Icons";
+import { redis } from "@/libs/redis";
+import { CachedPost } from "@/types/redis";
+import { Post, Subreddit, User, Vote, VoteType } from "@prisma/client";
+import prisma from "@/libs/prismadb";
+
+
 import PostVoteServer from "@/components/posts/vote/PostVoteServer";
 import ExtendedPost from "@/components/posts/ExtendedPost";
 import SubredditInfoSidebar from "@/components/sidebars/SubredditInfoSidebar";
 import PostPageHeader from "@/components/posts/PostPageHeader";
 import CommentsFeed from "@/components/comments/CommentsFeed";
-import { currentUser } from "@/libs/auth";
+
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 
 type PostPageProps = {

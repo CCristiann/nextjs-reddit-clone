@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-
 import prisma from "@/libs/prismadb";
 import { redis } from "@/libs/redis";
-import { ZodError, z } from "zod";
+import { ZodError } from "zod";
 import { PostVoteValidator } from "@/libs/validators/vote";
 import { CachedPost } from "@/types/redis";
 import { currentUser } from "@/libs/auth";

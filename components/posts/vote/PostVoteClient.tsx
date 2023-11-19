@@ -1,19 +1,17 @@
 "use client";
 
-import { Post, Vote, VoteType } from "@prisma/client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { usePrevious } from "@mantine/hooks";
+import { useMutation } from "react-query";
+
+import { VoteType } from "@prisma/client";
+import axios, { AxiosError } from "axios";
+import { PostVoteRequest } from "@/libs/validators/vote";
+import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/Button";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
-import { useMutation, useQuery } from "react-query";
-import { PostVoteRequest } from "@/libs/validators/vote";
-
-import axios, { Axios, AxiosError } from "axios";
-import { usePrevious } from "@mantine/hooks";
-import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
-import { twMerge } from "tailwind-merge";
-import debounce from "lodash.debounce";
 
 type PostVoteClientProps = {
   postId: string;

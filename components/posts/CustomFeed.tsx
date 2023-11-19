@@ -1,9 +1,8 @@
 import React from "react";
-
+import { User } from "@prisma/client";
 import prisma from "@/libs/prismadb";
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 import PostsFeed from "./PostsFeed";
-import { User } from "@prisma/client";
 
 type CustomFeedProps = {
   user: User;

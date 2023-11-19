@@ -1,16 +1,18 @@
 "use client";
-
 import React, { startTransition, useState } from "react";
-import { Button } from "../ui/Button";
-import { useMutation, useQueryClient } from "react-query";
+
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
+
+import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/navigation";
 import { usePrevious } from "@mantine/hooks";
+
 import {
-  SubredditCreationRequest,
   SubscribeToSubredditRequest,
 } from "@/libs/validators/subreddit";
+
+import { Button } from "../ui/Button";
 
 type JoinLeaveToggleProps = {
   subreddit: Record<string, any>;

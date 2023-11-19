@@ -1,22 +1,24 @@
 "use client";
 
+import React from "react";
+import { useQuery } from "react-query";
+import { usePathname } from "next/navigation";
+
+import { twMerge } from "tailwind-merge";
+import { Subreddit, User } from "@prisma/client";
 import axios from "axios";
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
 } from "../ui/Dropdown-menu";
-import { ChevronDown, Home, Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { twMerge } from "tailwind-merge";
-import { Subreddit, User } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { usePathname } from "next/navigation";
+
 import NavigationStatus from "./NavigationStatus";
 
 type NavigationMenuProps = {

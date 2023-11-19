@@ -1,6 +1,5 @@
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import React from "react";
-
 import Skeleton from "react-loading-skeleton";
 
 const LoadingComment = () => {

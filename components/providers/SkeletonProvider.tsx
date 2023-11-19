@@ -1,7 +1,7 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import React, { ReactNode } from "react";
+import { useTheme } from "next-themes";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 type SkeletonProviderProps = {

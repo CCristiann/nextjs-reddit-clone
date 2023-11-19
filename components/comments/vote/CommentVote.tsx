@@ -1,17 +1,20 @@
 "use client";
 
-import { CommentVote as CommentVoteType, Post, Vote, VoteType } from "@prisma/client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { usePrevious } from "@mantine/hooks";
+import { useMutation } from "react-query";
+
+import { CommentVoteRequest } from "@/libs/validators/vote";
+import { CommentVote as CommentVoteType, VoteType } from "@prisma/client";
+import axios, { AxiosError } from "axios";
+import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/Button";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
-import { useMutation, useQuery } from "react-query";
-import { CommentVoteRequest, PostVoteRequest } from "@/libs/validators/vote";
 
-import axios, { Axios, AxiosError } from "axios";
-import { usePrevious } from "@mantine/hooks";
-import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
+
+
 
 type PartialVote = Pick<CommentVoteType, "type">;
 

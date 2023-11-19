@@ -1,16 +1,16 @@
 "use client";
 
-import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useInfiniteQuery } from "react-query";
-import Post from "./Post";
-import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
-
 import { useIntersection } from "@mantine/hooks";
-import LoadingPost from "./LoadingPost";
-import Loader from "../Loader";
-import { currentUser } from "@/libs/auth";
+
+import axios from "axios";
 import { User } from "@prisma/client";
+
+import Post from "./Post";
+import LoadingPost from "./LoadingPost";
+
+import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 
 type PostsFeedProps = {
   initialPosts: Record<string, any>;

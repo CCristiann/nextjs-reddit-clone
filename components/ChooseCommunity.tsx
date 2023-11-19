@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 import {
   DropdownMenu,
@@ -8,8 +8,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/Dropdown-menu";
-import { ChevronDown, CircleDashed, PlusCircle, Search } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronDown, CircleDashed, Search } from "lucide-react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
@@ -17,7 +16,6 @@ import { Subreddit, User } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { Button } from "./ui/Button";
-import { DropdownMenuItemIndicator } from "@radix-ui/react-dropdown-menu";
 
 type ChooseCommunityProps = {
   selectedSubreddit?: Subreddit;

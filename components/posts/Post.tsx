@@ -41,7 +41,7 @@ const Post: React.FC<PostProps> = ({
 
   const goToSubreddit = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push(`r/${post.subreddit.name}`);
+    router.push(`${window.location.origin}/r/${post.subreddit.name}`);
   };
 
   const goToPost = (e: React.MouseEvent) => {
@@ -53,7 +53,7 @@ const Post: React.FC<PostProps> = ({
 
   const goToUserProfilePage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push(`/user/${post.author.username}`);
+    router.push(`${window.location.origin}/user/${post.author.username}`);
   };
 
   return (
@@ -67,49 +67,21 @@ const Post: React.FC<PostProps> = ({
           <div className="flex items-center">
             {showSubreddit && (
               <>
-                <HoverCard openDelay={450}>
-                  <HoverCardTrigger>
-                    <div className="flex cursor-pointer items-center gap-2">
-                      <Avatar className="flex h-6 w-6 items-center justify-center border-2 border-white bg-sky-600">
-                        <AvatarImage src={post.subreddit.image!} />
-                        <AvatarFallback className="bg-transparent text-sm font-bold text-zinc-50">
-                          r/
-                        </AvatarFallback>
-                      </Avatar>
-                      <p
-                        onClick={goToSubreddit}
-                        className="text-xs font-bold text-zinc-900 hover:underline dark:text-zinc-50"
-                      >
-                        r/{post.subreddit.name}
-                      </p>
-                    </div>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
-                    <div className="flex items-center gap-1.5">
-                      <Avatar className="flex h-8 w-8 items-center justify-center border-2 border-white bg-sky-600">
-                        <AvatarImage src={post.subreddit.image!} />
-                        <AvatarFallback className="bg-transparent text-sm font-bold text-zinc-50">
-                          r/
-                        </AvatarFallback>
-                      </Avatar>
-                      <p className="text-xs font-bold text-zinc-900 dark:text-zinc-50">
-                        r/{post.subreddit.name}
-                      </p>
-                    </div>
-
-                    <p className="flex flex-col items-start text-xs text-neutral-500">
-                      <span className="text-base text-zinc-900 dark:text-zinc-50">
-                        {post.subreddit._count.subscribers}
-                      </span>
-                      Members
-                    </p>
-
-                    <Button className="black-style_btn" onClick={goToSubreddit}>
-                      View Community
-                    </Button>
-                  </HoverCardContent>
-                </HoverCard>
-
+                <div className="flex cursor-default items-center gap-2">
+                  <Avatar className="flex h-6 w-6 items-center cursor-pointer justify-center border-2 border-white bg-sky-600">
+                    <AvatarImage src={post.subreddit.image!} />
+                    <AvatarFallback className="bg-transparent text-sm font-bold text-zinc-50">
+                      r/
+                    </AvatarFallback>
+                  </Avatar>
+                  <p
+                    onClick={goToSubreddit}
+                    className="text-xs font-bold text-zinc-900 hover:underline dark:text-zinc-50 cursor-pointer"
+                  >
+                    r/{post.subreddit.name}
+                  </p>
+                </div>
+                
                 <Dot className="text-neutral-500" size={17} />
               </>
             )}
@@ -156,7 +128,7 @@ const Post: React.FC<PostProps> = ({
         </div>
       </div>
 
-      {/* LARGE / MEDIUM  border-gray-200 bg-zinc-50 shadow hover:border-neutral-500 dark:border-neutral-700 dark:bg-zinc-900 dark:hover:border-gray-400*/}
+      {/* LARGE / MEDIUM */}
       <div
         className="z-0 hidden rounded-sm bg-zinc-50 shadow-md dark:bg-zinc-900 md:flex"
         onClick={goToPost}
@@ -167,14 +139,14 @@ const Post: React.FC<PostProps> = ({
           initialVote={currentVote?.type}
         />
 
-        <div className="w-full overflow-hidden px-2 pb-1 pt-2">
-          <div className="flex items-center">
+        <div className="w-full overflow-hidden px-2 pb-1 pt-2 cursor-pointer">
+          <div className="flex items-center z-10">
             {showSubreddit && (
               <>
                 <HoverCard openDelay={450}>
                   <HoverCardTrigger>
-                    <div className="flex cursor-pointer items-center gap-2">
-                      <Avatar className="flex h-6 w-6 items-center justify-center border-2 border-white bg-sky-600">
+                    <div className="flex items-center gap-2 cursor-default">
+                      <Avatar onClick={goToSubreddit} className="flex h-6 w-6 items-center justify-center border-2 border-white bg-sky-600 cursor-pointer">
                         <AvatarImage src={post.subreddit.image!} />
                         <AvatarFallback className="bg-transparent text-sm font-bold text-zinc-50">
                           r/
@@ -182,13 +154,13 @@ const Post: React.FC<PostProps> = ({
                       </Avatar>
                       <p
                         onClick={goToSubreddit}
-                        className="text-xs font-bold text-zinc-900 hover:underline dark:text-zinc-50"
+                        className="text-xs font-bold text-zinc-900 hover:underline dark:text-zinc-50 cursor-pointer"
                       >
                         r/{post.subreddit.name}
                       </p>
                     </div>
                   </HoverCardTrigger>
-                  <HoverCardContent className="absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
+                  <HoverCardContent className="cursor-default absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
                     <div className="flex items-center gap-1.5">
                       <Avatar className="flex h-8 w-8 items-center justify-center border-2 border-white bg-sky-600">
                         <AvatarImage src={post.subreddit.image!} />
@@ -218,7 +190,7 @@ const Post: React.FC<PostProps> = ({
               </>
             )}
 
-            <p className="text-xs text-neutral-500">
+            <p className="text-xs text-neutral-500 cursor-default">
               Posted by&nbsp;
             </p>
             <HoverCard openDelay={450}>
@@ -231,7 +203,7 @@ const Post: React.FC<PostProps> = ({
                 </p>
 
               </HoverCardTrigger>
-              <HoverCardContent className="absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
+              <HoverCardContent className="cursor-default absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
                 <div className="flex items-center gap-1.5">
                   <Avatar className="flex h-8 w-8 items-center justify-center border-2 border-white bg-sky-600">
                     <AvatarImage src={post.author.imageUrl!} />
@@ -269,7 +241,7 @@ const Post: React.FC<PostProps> = ({
             )}
           </div>
 
-          <div className="z-10 -ml-2 w-full cursor-pointer bg-zinc-50 dark:bg-zinc-900">
+          <div className="z-10 -ml-2 w-fit cursor-pointer bg-zinc-50 dark:bg-zinc-900">
             <p className="flex w-fit items-center gap-1 rounded-sm p-1.5 text-sm font-semibold text-neutral-500 transition hover:bg-neutral-500 hover:bg-opacity-10">
               <MessageSquare size={17} />
               <span>{post.comments?.length}</span>

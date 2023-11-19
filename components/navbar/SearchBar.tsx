@@ -1,7 +1,14 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Input } from "../ui/Input";
+import React, { useCallback,  useRef, useState } from "react";
+import { useQuery } from "react-query";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside";
+import { useRouter } from "next/navigation";
+
+import { Prisma, Subreddit, User } from "@prisma/client";
+import axios from "axios";
+import debounce from "lodash.debounce";
+
 import {
   Command,
   CommandEmpty,
@@ -10,16 +17,11 @@ import {
   CommandItem,
   CommandSeparator,
 } from "../ui/Command";
+
 import { CommandList } from "../ui/Command";
-import { useQuery } from "react-query";
-import axios from "axios";
-import debounce from "lodash.debounce";
 import Link from "next/link";
-import { Prisma, Subreddit, User } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import Loader from "../Loader";
-import { useOnClickOutside } from "@/hooks/use-on-click-outside";
+
 
 const SearchBar = () => {
   const router = useRouter();
@@ -33,7 +35,6 @@ const SearchBar = () => {
   const {
     data: results,
     refetch,
-    isFetched,
     isFetching,
   } = useQuery({
     queryKey: ["fetch-user-search"],

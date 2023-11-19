@@ -1,11 +1,10 @@
+import { currentUser } from "@/libs/auth";
+
+import Link from "next/link";
 import CustomFeed from "@/components/posts/CustomFeed";
 import GeneralFeed from "@/components/posts/GeneralFeed";
-
 import MiniCreatePost from "@/components/MiniCreatePost";
 import HomeSidebar from "@/components/sidebars/home/HomeSidebar";
-import Link from "next/link";
-import { currentUser } from "@/libs/auth";
-import Image from "next/image";
 
 const Home = async () => {
   const user = await currentUser();

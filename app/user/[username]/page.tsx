@@ -48,7 +48,7 @@ const UserProfilePage = async ({ params }: UserProfilePageProps) => {
 
   return (
     <div className="page-paddings mx-auto h-fit w-full max-w-5xl">
-      <div className="flex flex-col-reverse md:grid grid-cols-1 gap-y-4 py-2 md:grid-cols-3 md:gap-x-3 md:py-6">
+      <div className="flex flex-col-reverse md:grid grid-cols-1 gap-y-2 py-2 md:grid-cols-3 md:gap-x-3 md:py-6">
           <Tabs defaultValue="posts" className="relative overflow-hidden col-span-2 flex h-fit w-full flex-col">
             <TabsList>
               <TabsTrigger value="posts">Posts</TabsTrigger>
@@ -63,7 +63,7 @@ const UserProfilePage = async ({ params }: UserProfilePageProps) => {
           </Tabs>
 
         {/* Home sidebar */}
-        <div className="sticky top-16 h-fit overflow-hidden">
+        <div className="md:sticky md:top-16 h-fit overflow-hidden">
           {user && sessionUser && (
             <UserSidebar user={user} sessionUser={sessionUser} />
           )}

@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-
 import prisma from "@/libs/prismadb";
 import { currentUser } from "@/libs/auth";
-import { EditUserValidator } from "@/libs/validators/user";
-import { z } from "zod";
+
 
 export async function GET(req: NextRequest) {
   try {

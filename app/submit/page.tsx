@@ -1,7 +1,9 @@
+import React from "react";
+
+import { currentUser } from "@/libs/auth";
+
 import ChooseCommunity from "@/components/ChooseCommunity";
 import RulesSidebar from "@/components/sidebars/RulesSidebar";
-import React from "react";
-import { currentUser } from "@/libs/auth";
 import PostForm from "@/components/forms/PostForm";
 
 const SubmitPage = async () => {

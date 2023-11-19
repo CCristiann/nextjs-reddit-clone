@@ -1,18 +1,20 @@
 "use client";
 
-import TextareaAutosize from "react-textarea-autosize";
+import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { Controller, useForm } from "react-hook-form";
+import { usePathname, useRouter } from "next/navigation";
+
 import { PostCreationRequest, PostValidator } from "@/libs/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Editor } from "@tiptap/react";
 import { editorOptions } from "@/libs/tiptap";
-import React, { useCallback, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
 import z from "zod";
-import { Button } from "../ui/Button";
-import { useMutation } from "react-query";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
-import { usePathname, useRouter } from "next/navigation";
+
+import TextareaAutosize from "react-textarea-autosize";
+import { Editor } from "@tiptap/react";
+import { Button } from "../ui/Button";
 import Toolbar from "../editor/Toolbar";
 import { EditorContent } from "@tiptap/react";
 

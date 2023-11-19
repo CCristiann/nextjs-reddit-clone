@@ -1,26 +1,26 @@
 "use client";
 
+
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
+import { useForm } from "react-hook-form";
+
 import { User } from "@prisma/client";
-import Image from "next/image";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { getInitials } from "@/libs/utils";
-import { Input } from "../ui/Input";
+import axios, { AxiosError } from "axios";
+import { z } from "zod";
+import { EditUserRequest, EditUserValidator } from "@/libs/validators/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+
+import { Check, Pencil, Settings } from "lucide-react";
+
 import { Label } from "../ui/label";
-import { Check, ImagePlus, Pencil, Settings } from "lucide-react";
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/Button";
-import { usePathname, useRouter } from "next/navigation";
-import { Toggle } from "../ui/Toggle";
-import { useMutation } from "react-query";
-import { EditUserRequest, EditUserValidator } from "@/libs/validators/user";
-import axios, { AxiosError } from "axios";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import Loader from "../Loader";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import toast from "react-hot-toast";
-import { uploadFiles } from "@/libs/upload";
 
 type FormData = z.infer<typeof EditUserValidator>;
 

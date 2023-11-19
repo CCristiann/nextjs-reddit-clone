@@ -2,16 +2,12 @@
 
 import { Comment as CommentType, CommentVote, User } from "@prisma/client";
 
-import prisma from "@/libs/prismadb";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import Comment from "./Comment";
-import { currentUser } from "@/libs/auth";
 import { useEffect, useRef } from "react";
 import { useIntersection } from "@mantine/hooks";
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
-import LoadingPost from "../posts/LoadingPost";
-import Loader from "../Loader";
 import LoadingComment from "./LoadingComment";
 
 type ReplyComment = CommentType & {

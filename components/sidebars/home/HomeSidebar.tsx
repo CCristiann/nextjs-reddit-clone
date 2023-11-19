@@ -2,23 +2,14 @@
 import React from "react";
 
 import Image from "next/image";
-import { Button } from "../../ui/Button";
-
-import { twMerge } from "tailwind-merge";
 import HomeSidebarBtns from "./HomeSidebarBtns";
-
 import HomePageBanner from "@/public/assets/images/home-banner.png";
 import SnooHome from "@/public/assets/images/snoo-home.png";
-import Loader from "@/components/Loader";
+
 
 const HomeSidebar = () => {
   return (
-    <div
-      className={`
-      sidebar
-      ${twMerge("")}
-    `}
-    >
+    <div className="sidebar">
       {/* <div className="w-full h-[35px] relative z-0"> */}
       <Image src={HomePageBanner} alt="home-banner" className="object-cover" />
       {/* </div> */}

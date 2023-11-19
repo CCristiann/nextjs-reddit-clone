@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useTheme } from "next-themes";
 
 import {
   DropdownMenu,
@@ -27,13 +28,11 @@ import {
 import Link from "next/link";
 
 import { buttonVariants } from "../ui/Button";
-import { SignedIn, SignedOut, UserButton, useClerk } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 import { Switch } from "../ui/Switch";
 import { User } from "@prisma/client";
-import { useTheme } from "next-themes";
+
 import toast from "react-hot-toast";
-import { useQuery } from "react-query";
-import axios from "axios";
 import { getInitials } from "@/libs/utils";
 
 type UserMenuProps = {

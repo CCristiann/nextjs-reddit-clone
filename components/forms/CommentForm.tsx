@@ -1,25 +1,22 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { startTransition, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import TextareaAutosize from "react-textarea-autosize";
-import { Button } from "../ui/Button";
+import { useMutation, useQueryClient } from "react-query";
+
+import axios, { AxiosError } from "axios";
+import z from "zod";
+import toast from "react-hot-toast";
+import { editorOptions } from "@/libs/tiptap";
+
 import {
   CommentCreationRequest,
   CommentValidator,
 } from "@/libs/validators/comment";
-import z from "zod";
-import { currentUser } from "@/libs/auth";
-import { Post, Subreddit, User, Vote } from "@prisma/client";
-import { CachedPost } from "@/types/redis";
+import { Button } from "../ui/Button";
 import Link from "next/link";
-import { useMutation, useQueryClient } from "react-query";
-import axios, { Axios, AxiosError } from "axios";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { Editor, EditorContent } from "@tiptap/react";
-import { editorOptions } from "@/libs/tiptap";
 import Toolbar from "../editor/Toolbar";
 
 type FormData = z.infer<typeof CommentValidator>;

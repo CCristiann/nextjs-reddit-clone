@@ -3,7 +3,6 @@ import { currentUser } from "@/libs/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/libs/prismadb";
-import { AxiosError } from "axios";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function POST(req: NextRequest, res: NextResponse) {

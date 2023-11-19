@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar/Navbar";
 import "../styles/global.css";
 import "react-loading-skeleton/dist/skeleton.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -22,7 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Reddit clone",
-  description: "Reddit clone made with NextJS",
+  description: "Reddit clone made with NextJS 14",
 };
 
 export default function RootLayout({

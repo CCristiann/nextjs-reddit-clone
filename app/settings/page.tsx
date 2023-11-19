@@ -1,6 +1,6 @@
+import React from "react";
 import CloseModal from "@/components/CloseModal";
 import { UserProfile } from "@clerk/nextjs";
-import React from "react";
 
 const SettingsProfilePage = () => {
   return (

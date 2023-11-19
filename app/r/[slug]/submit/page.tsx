@@ -1,10 +1,10 @@
 import React from "react";
 
+import { currentUser } from "@/libs/auth";
 import prisma from "@/libs/prismadb";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/Button";
+
 import ChooseCommunity from "@/components/ChooseCommunity";
-import { currentUser } from "@/libs/auth";
 import SubredditInfoSidebar from "@/components/sidebars/SubredditInfoSidebar";
 import RulesSidebar from "@/components/sidebars/RulesSidebar";
 import PostForm from "@/components/forms/PostForm";

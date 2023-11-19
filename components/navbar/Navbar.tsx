@@ -3,12 +3,11 @@ import React from "react";
 import Link from "next/link";
 import Icons from "../Icons";
 import UserMenu from "@/components/navbar/UserMenu";
-
 import NavigationMenu from "./NavigationMenu";
 import { Plus } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 import { currentUser } from "@/libs/auth";
-import SearchBar from "./SearchBar";
 
 const Navbar = async () => {
   const user = await currentUser();

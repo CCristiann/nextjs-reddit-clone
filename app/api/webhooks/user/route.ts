@@ -2,7 +2,6 @@ import { IncomingHttpHeaders } from "http";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook, WebhookRequiredHeaders } from "svix";
-
 import prisma from "@/libs/prismadb";
 import { nanoid } from "nanoid";
 

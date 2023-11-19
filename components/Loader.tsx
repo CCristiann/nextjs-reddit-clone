@@ -1,7 +1,6 @@
 "use client";
 
 import { Spinner } from "flowbite-react";
-import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type LoaderProps = {

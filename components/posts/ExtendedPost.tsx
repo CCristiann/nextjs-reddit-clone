@@ -1,8 +1,11 @@
 "use client";
 
-import { Post, Prisma, Subreddit, User, Vote } from "@prisma/client";
-import React, { cache } from "react";
-import PostVoteClient from "./vote/PostVoteClient";
+import { Post, Subreddit, User, Vote } from "@prisma/client";
+import React from "react";
+
+import { formatDistanceToNow } from "date-fns";
+import { CachedPost } from "@/types/redis";
+
 import {
   HoverCard,
   HoverCardContent,
@@ -10,13 +13,10 @@ import {
 } from "../ui/Hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { Button } from "../ui/Button";
-import { Dot, MessageSquare } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
-import { CachedPost } from "@/types/redis";
-import CommentsFeed from "../comments/CommentsFeed";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import EditorOutput from "../editor/EditorOutput";
 import CommentForm from "../forms/CommentForm";
+import { Dot, MessageSquare } from "lucide-react";
 
 type PartialVote = Pick<Vote, "type">;
 

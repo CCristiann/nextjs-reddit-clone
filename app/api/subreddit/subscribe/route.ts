@@ -1,6 +1,5 @@
 import { SubredditSubscriptionValidator } from "@/libs/validators/subreddit";
 import { NextRequest, NextResponse } from "next/server";
-
 import prisma from "@/libs/prismadb";
 import { z } from "zod";
 import { currentUser } from "@/libs/auth";

@@ -1,5 +1,5 @@
-import { Subreddit, User } from "@prisma/client";
 import React from "react";
+import { Subreddit, User } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 
 type PostPageHeaderProps = {

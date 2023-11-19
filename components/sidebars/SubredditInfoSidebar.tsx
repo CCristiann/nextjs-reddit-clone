@@ -1,15 +1,13 @@
-import { Subreddit } from "@prisma/client";
 import React from "react";
+import { Subreddit } from "@prisma/client";
 
 import Link from "next/link";
-
 import { buttonVariants } from "../ui/Button";
-import format from "date-fns/format";
-import { twMerge } from "tailwind-merge";
 import { CakeSlice } from "lucide-react";
 
 import prisma from "@/libs/prismadb";
-import { sub } from "date-fns";
+import format from "date-fns/format";
+import { twMerge } from "tailwind-merge";
 
 type SubredditInfoSidebarProps = {
   subreddit: Subreddit;

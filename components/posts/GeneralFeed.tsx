@@ -1,6 +1,5 @@
 import React from "react";
 import PostsFeed from "./PostsFeed";
-
 import prisma from "@/libs/prismadb";
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 

@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
-import { Input } from "./ui/Input";
-import { Button } from "./ui/Button";
-import { Image, Link } from "lucide-react";
 import { User } from "@prisma/client";
 import { getInitials } from "@/libs/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
+import { Input } from "./ui/Input";
+import { Image, Link } from "lucide-react";
+
 
 type MiniCreatePostProps = {
   user?: User | null;

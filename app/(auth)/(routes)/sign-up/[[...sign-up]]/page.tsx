@@ -1,10 +1,6 @@
-import CloseModal from "@/components/CloseModal";
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/libs/utils";
-import { SignUp } from "@clerk/nextjs";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
 import React from "react";
+import { SignUp } from "@clerk/nextjs";
+import CloseModal from "@/components/CloseModal";
 
 const SignUpPage = () => {
   return (

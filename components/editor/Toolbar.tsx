@@ -1,5 +1,12 @@
 "use client";
 
+import React, { ChangeEvent, useState } from "react";
+
+import { LinkValidator } from "@/libs/validators/link";
+import { ZodError } from "zod";
+import toast from "react-hot-toast";
+import { uploadFiles } from "@/libs/upload";
+
 import { type Editor } from "@tiptap/react";
 import {
   Bold,
@@ -12,7 +19,6 @@ import {
   Image,
   Link,
 } from "lucide-react";
-import React, { ChangeEvent, useState } from "react";
 import { Toggle } from "@/components/ui/Toggle";
 import {
   Tooltip,
@@ -21,12 +27,8 @@ import {
   TooltipTrigger,
 } from "../ui/Tooltip";
 import { buttonVariants } from "../ui/Button";
-import toast from "react-hot-toast";
-import { uploadFiles } from "@/libs/upload";
 import { Input } from "../ui/Input";
 import { Label } from "../ui/label";
-import { LinkValidator } from "@/libs/validators/link";
-import { ZodError } from "zod";
 import {
   AlertDialog,
   AlertDialogAction,

@@ -1,7 +1,5 @@
 "use client";
-
 import { useEffect } from "react";
-import { EmailAddress } from "@clerk/nextjs/server";
 
 const RedditMan = () => {
   useEffect(() => {
@@ -14,7 +12,7 @@ const RedditMan = () => {
  ²   ,p²''              ''²q,   ²
 :  ,7'                      '7,  :
  ' $      ,db,      ,db,      $ '
-  '$      ²$$²      ²$$²      $'    Rosita devi esplodere
+  '$      ²$$²      ²$$²      $'    Made with <3 from Cristian
   '$                          $'
    '$.     .,        ,.     .$'
     'b,     '²«»«»«»²'     ,d'

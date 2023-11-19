@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import prisma from "@/libs/prismadb";
 import { currentUser as clerkCurrentUser } from "@clerk/nextjs";
 import { User } from "@prisma/client";
@@ -19,7 +18,7 @@ export const currentUser = async () => {
       where: {
         id: dbUser.id
       },
-      data: {
+      data: { 
         name: `${clerkUser.firstName} ${clerkUser.lastName}`,
         imageUrl: clerkUser.imageUrl
       }

@@ -1,24 +1,23 @@
 "use client";
 
-import React, { useState, useReducer, useEffect } from "react";
-
-import { QueryClient, useMutation, useQueryClient } from "react-query";
-import axios, { AxiosError } from "axios";
-
-import { Input } from "../ui/Input";
-import { Lock, User2 } from "lucide-react";
-import { Button } from "../ui/Button";
+import React from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosError } from "axios";
+import toast from "react-hot-toast";
+import z from "zod";
 import {
   SubredditCreationRequest,
   SubredditCreationValidator,
 } from "@/libs/validators/subreddit";
-import { Subreddit } from "@prisma/client";
-import toast from "react-hot-toast";
-import { useForm } from "react-hook-form";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Input } from "../ui/Input";
+import { Button } from "../ui/Button";
 import { Label } from "../ui/label";
+import { Lock, User2 } from "lucide-react";
 
 type FormData = z.infer<typeof SubredditCreationValidator>;
 

@@ -1,14 +1,15 @@
 import Link from "next/link";
-import MiniCreatePost from "@/components/MiniCreatePost";
+
+import { currentUser } from "@/libs/auth";
 import prisma from "@/libs/prismadb";
 import { notFound } from "next/navigation";
-import PostsFeed from "@/components/posts/PostsFeed";
-import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
-import SubredditHero from "@/components/subreddit/SubredditHero";
-import RulesSidebar from "@/components/sidebars/RulesSidebar";
-import SubredditInfoSidebar from "@/components/sidebars/SubredditInfoSidebar";
-import { currentUser } from "@/libs/auth";
 
+import PostsFeed from "@/components/posts/PostsFeed";
+import MiniCreatePost from "@/components/MiniCreatePost";
+import SubredditHero from "@/components/subreddit/SubredditHero";
+import SubredditInfoSidebar from "@/components/sidebars/SubredditInfoSidebar";
+
+import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 interface PageProps {
   params: {
     slug: string;
@@ -41,15 +42,15 @@ const page = async ({ params }: PageProps) => {
   const subscription = !user
     ? undefined
     : await prisma.subscription.findFirst({
-        where: {
-          subreddit: {
-            name: slug,
-          },
-          user: {
-            id: user.id,
-          },
+      where: {
+        subreddit: {
+          name: slug,
         },
-      });
+        user: {
+          id: user.id,
+        },
+      },
+    });
 
   const isSubscribed = !!subscription;
 
