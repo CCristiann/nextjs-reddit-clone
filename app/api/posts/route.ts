@@ -15,13 +15,13 @@ export async function GET(req: NextRequest) {
         limit: z.string(),
         page: z.string(),
         subredditName: z.string().nullish().optional(),
-        userId: z.string().nullish().optional()
+        userId: z.string().nullish().optional(),
       })
       .parse({
         limit: url.searchParams.get("limit"),
         page: url.searchParams.get("page"),
         subredditName: url.searchParams.get("subredditName"),
-        userId: url.searchParams.get("userId")
+        userId: url.searchParams.get("userId"),
       });
 
     let whereClause = {};
@@ -39,8 +39,8 @@ export async function GET(req: NextRequest) {
     if (user && !subredditName) {
       if (userId) {
         whereClause = {
-          authorId: userId
-        }
+          authorId: userId,
+        };
       } else {
         const followedCommunities = await prisma.subscription.findMany({
           where: {
@@ -59,7 +59,6 @@ export async function GET(req: NextRequest) {
           },
         };
       }
-
     }
 
     const posts = await prisma.post.findMany({
@@ -83,7 +82,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(posts, { status: 200 });
   } catch (err) {
-  
     return NextResponse.json("Failed to fetch posts", { status: 500 });
   }
 }

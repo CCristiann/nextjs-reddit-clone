@@ -6,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
 import { Input } from "./ui/Input";
 import { Image, Link } from "lucide-react";
 
-
 type MiniCreatePostProps = {
   user?: User | null;
 };
@@ -15,7 +14,10 @@ const MiniCreatePost: React.FC<MiniCreatePostProps> = ({ user }) => {
   return (
     <div className="flex h-fit w-full items-center justify-around gap-2 rounded-md bg-zinc-50 px-1 py-1.5 shadow-sm dark:bg-zinc-900 md:p-2">
       <Avatar className="h-8 w-8">
-        <AvatarImage alt="User profile image" src={user?.imageUrl}></AvatarImage>
+        <AvatarImage
+          alt="User profile image"
+          src={user?.imageUrl}
+        ></AvatarImage>
         <AvatarFallback>{getInitials(user?.name)}</AvatarFallback>
       </Avatar>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback,  useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,6 @@ import {
 import { CommandList } from "../ui/Command";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-
 
 const SearchBar = () => {
   const router = useRouter();
@@ -63,7 +62,7 @@ const SearchBar = () => {
       ref={commandRef}
       className={`
       ${query.length > 0 ? "rounded-t-md" : "rounded-md"}
-      relative z-40 h-8 w-full overflow-visible rounded-t-md md:w-3/4 lg:w-2/4
+      relative z-40 h-8 overflow-visible rounded-t-md md:w-3/4 lg:w-2/4
     `}
     >
       <CommandInput

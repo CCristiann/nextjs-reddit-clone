@@ -7,7 +7,6 @@ import { CachedPost } from "@/types/redis";
 import { Post, Subreddit, User, Vote, VoteType } from "@prisma/client";
 import prisma from "@/libs/prismadb";
 
-
 import PostVoteServer from "@/components/posts/vote/PostVoteServer";
 import ExtendedPost from "@/components/posts/ExtendedPost";
 import SubredditInfoSidebar from "@/components/sidebars/SubredditInfoSidebar";
@@ -114,6 +113,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                     bgTransparent
                   />
                   <ExtendedPost
+                    sessionUser={user}
                     post={post}
                     cachedPost={cachedPost}
                     membersCount={membersCount}

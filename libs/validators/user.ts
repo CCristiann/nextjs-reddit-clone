@@ -11,7 +11,7 @@ export const EditUserValidator = z.object({
     })
     .regex(new RegExp("^[a-zA-Z]+$"), {
       message: "Invalid username. The username must contains only letters.",
-    })
+    }),
 });
 
 export type EditUserRequest = z.infer<typeof EditUserValidator>;

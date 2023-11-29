@@ -48,11 +48,11 @@ async function handler(req: Request) {
           username: nanoid(10),
         },
         update: {
-          name: `${
-            attributes.first_name && attributes.last_name
-              ? `${attributes.first_name} ${attributes.last_name}`
-              : null
-          }`,
+          name: `
+            ${attributes.first_name ? attributes.first_name : ""}
+            " "
+            ${attributes.last_name ? attributes.last_name : ""}
+          `,
           email: attributes.email_addresses[0].email_address,
           imageUrl: attributes.image_url,
         },
@@ -85,7 +85,7 @@ async function handler(req: Request) {
     }
   }
 
-  return NextResponse.json("OK", { status: 200 })
+  return NextResponse.json("OK", { status: 200 });
 }
 
 type EventType = "user.created" | "user.updated" | "*";

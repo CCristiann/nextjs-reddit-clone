@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
       { status: 200 },
     );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return NextResponse.json("Something went wrong. Please try later.", {
       status: 500,
     });

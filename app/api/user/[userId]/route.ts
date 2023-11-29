@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         id: user.id,
       },
       data: {
-        username
+        username,
       },
     });
 

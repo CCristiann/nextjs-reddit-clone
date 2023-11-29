@@ -29,3 +29,41 @@ export async function GET(req: NextRequest, { params }: Props) {
     return NextResponse.json("Failed to fetch post", { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest, { params }: Props) {
+  try {
+    if (params.postId) {
+      await prisma.comment.updateMany({
+        where: {
+          postId: params.postId,
+        },
+        data: {
+          replyToId: null,
+        },
+      });
+
+      await prisma.comment.deleteMany({
+        where: {
+          postId: params.postId,
+        },
+      });
+
+      await prisma.post.delete({
+        where: {
+          id: params.postId,
+        },
+        include: {
+          votes: true,
+          comments: true,
+        },
+      });
+
+      return NextResponse.json("OK", { status: 200 });
+    }
+
+    throw new Error("Invalid ID");
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json("Failed to delete post", { status: 500 });
+  }
+}

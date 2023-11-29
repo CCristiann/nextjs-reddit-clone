@@ -13,9 +13,6 @@ import toast from "react-hot-toast";
 import { Button } from "@/components/ui/Button";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 
-
-
-
 type PartialVote = Pick<CommentVoteType, "type">;
 
 type CommentVoteProps = {

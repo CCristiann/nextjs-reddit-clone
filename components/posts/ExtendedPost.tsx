@@ -16,24 +16,39 @@ import { Button } from "../ui/Button";
 import { useRouter } from "next/navigation";
 import EditorOutput from "../editor/EditorOutput";
 import CommentForm from "../forms/CommentForm";
-import { Dot, MessageSquare } from "lucide-react";
+import { Dot, MessageSquare, Trash } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/Alert-dialog";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type PartialVote = Pick<Vote, "type">;
 
 type ExtendedPostProps = {
+  sessionUser?: User | null;
   post:
-  | (Post & {
-    author: User;
-    votes: Vote[];
-    comments?: [string];
-    subreddit: Subreddit;
-  })
-  | null;
+    | (Post & {
+        author: User;
+        votes: Vote[];
+        comments?: [string];
+        subreddit: Subreddit;
+      })
+    | null;
   cachedPost: CachedPost;
   membersCount: number;
 };
 
 const ExtendedPost: React.FC<ExtendedPostProps> = ({
+  sessionUser,
   post,
   cachedPost,
   membersCount,
@@ -45,6 +60,23 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
       addSuffix: true,
     },
   );
+
+  const { mutate: deletePost, isLoading } = useMutation({
+    mutationKey: ["delete-post"],
+    mutationFn: async () => {
+      const { data } = await axios.delete(
+        `/api/posts/${post?.id ?? cachedPost.id}`,
+      );
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Post deleted successfully.");
+      router.back();
+    },
+    onError: (err) => {
+      toast.error("Something went wrong.");
+    },
+  });
 
   if (!post && !cachedPost) return null;
 
@@ -63,7 +95,7 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
                 </AvatarFallback>
               </Avatar>
               <p
-                onClick={() => { }}
+                onClick={() => {}}
                 className="text-xs font-bold text-zinc-900 hover:underline dark:text-zinc-50"
               >
                 r/{post?.subreddit.name ?? cachedPost.subreddit.name}
@@ -108,10 +140,7 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
 
         <Dot className="text-neutral-500" size={17} />
 
-
-        <p className="text-xs text-neutral-500">
-          Posted by&nbsp;
-        </p>
+        <p className="text-xs text-neutral-500">Posted by&nbsp;</p>
         <HoverCard openDelay={450}>
           <HoverCardTrigger>
             <p
@@ -125,7 +154,6 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
             >
               u/{post?.author.username ?? cachedPost.authorUsername}
             </p>
-
           </HoverCardTrigger>
           <HoverCardContent className="absolute -left-5 z-[999] flex h-fit min-w-[150px] flex-col gap-2 rounded-md border-[1px] border-zinc-200 bg-zinc-50 p-3 dark:border-neutral-700 dark:bg-zinc-900">
             <div className="flex items-center gap-1.5">
@@ -143,14 +171,23 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
               </p>
             </div>
 
-            <Button className="black-style_btn mt-4" onClick={(e: React.MouseEvent) => {
-              e.stopPropagation()
-              router.push(`/user/${post?.author.username ?? cachedPost.authorUsername}`)
-            }}>
+            <Button
+              className="black-style_btn mt-4"
+              onClick={(e: React.MouseEvent) => {
+                e.stopPropagation();
+                router.push(
+                  `/user/${post?.author.username ?? cachedPost.authorUsername}`,
+                );
+              }}
+            >
               View Profile
             </Button>
           </HoverCardContent>
         </HoverCard>
+
+        <p className="max-h-40 truncate text-xs text-zinc-500">
+          &nbsp;{createdAt}
+        </p>
       </div>
 
       <div className="relative my-1.5 flex flex-col items-start gap-1.5">
@@ -164,16 +201,45 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
         />
       </div>
 
-      <div className="z-10 -ml-2 w-full bg-zinc-50 dark:bg-zinc-900">
+      <div className="z-10 -ml-2 flex w-full items-center gap-x-3 bg-zinc-50 dark:bg-zinc-900">
         <p className="flex w-fit items-center gap-1 rounded-sm p-1.5 text-sm font-semibold text-neutral-500 transition hover:bg-neutral-500 hover:bg-opacity-10">
           <MessageSquare size={17} />
           <span>{post?.comments?.length ?? "0"}</span>
           Comments
         </p>
+        {(post
+          ? sessionUser?.id === post.author.id
+          : sessionUser?.username === cachedPost.authorUsername) && (
+          <AlertDialog>
+            <AlertDialogTrigger className="cursor-pointer rounded-sm p-1.5 text-sm font-semibold text-neutral-500 transition hover:bg-neutral-500 hover:bg-opacity-10">
+              <Trash size={17} />
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete post?</AlertDialogTitle>
+              </AlertDialogHeader>
+              <p>
+                Are you sure you want to delete your post? This action is
+                irreversible.
+              </p>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    deletePost();
+                  }}
+                >
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
       </div>
 
       <CommentForm
-        onReply={() => { }}
+        onReply={() => {}}
         actionType="comment"
         postId={post?.id ?? cachedPost.id}
         postAuthorUsername={post?.author.username ?? cachedPost.authorUsername}

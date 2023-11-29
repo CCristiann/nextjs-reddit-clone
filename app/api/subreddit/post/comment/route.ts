@@ -14,25 +14,25 @@ export async function GET(req: NextRequest, res: NextResponse) {
         limit: z.string(),
         page: z.string(),
         postId: z.string().nullish().optional(),
-        userId: z.string().nullish().optional()
+        userId: z.string().nullish().optional(),
       })
       .parse({
         limit: url.searchParams.get("limit"),
         page: url.searchParams.get("page"),
         postId: url.searchParams.get("postId"),
-        userId: url.searchParams.get("userId")
+        userId: url.searchParams.get("userId"),
       });
 
     let whereClause;
 
-    if(userId){
+    if (userId) {
       whereClause = {
-        authorId: userId
-      }
-    }else if(postId){
+        authorId: userId,
+      };
+    } else if (postId) {
       whereClause = {
-        postId: postId
-      }
+        postId: postId,
+      };
     }
 
     const comments = await prisma.comment.findMany({

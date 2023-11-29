@@ -42,15 +42,15 @@ const page = async ({ params }: PageProps) => {
   const subscription = !user
     ? undefined
     : await prisma.subscription.findFirst({
-      where: {
-        subreddit: {
-          name: slug,
+        where: {
+          subreddit: {
+            name: slug,
+          },
+          user: {
+            id: user.id,
+          },
         },
-        user: {
-          id: user.id,
-        },
-      },
-    });
+      });
 
   const isSubscribed = !!subscription;
 

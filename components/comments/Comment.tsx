@@ -1,6 +1,10 @@
 "use client";
 
-import { Comment as CommentType, CommentVote as CommentVoteType, User } from "@prisma/client";
+import {
+  Comment as CommentType,
+  CommentVote as CommentVoteType,
+  User,
+} from "@prisma/client";
 import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { formatDistanceToNow } from "date-fns";
@@ -8,8 +12,21 @@ import EditorOutput from "../editor/EditorOutput";
 import CommentVote from "./vote/CommentVote";
 import { Button } from "../ui/Button";
 import { useRouter } from "next/navigation";
-import { MessageSquare } from "lucide-react";
+import { Dot, MessageSquare, Trash } from "lucide-react";
 import CommentForm from "../forms/CommentForm";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "../ui/Alert-dialog";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type ExtendedComment = CommentType & {
   votes: CommentVoteType[];
@@ -31,12 +48,28 @@ const Comment: React.FC<CommentProps> = ({
   votesAmt,
   currentVote,
 }) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const createdAt = formatDistanceToNow(new Date(comment.createdAt), {
     addSuffix: true,
   });
 
   const [isReplying, setIsReplying] = useState<boolean>(false);
+
+  const { mutate: deleteComment, isLoading } = useMutation({
+    mutationKey: ["delete-comment"],
+    mutationFn: async () => {
+      const { data } = await axios.delete(`/api/comments/${comment.id}`);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Comment deleted successfully.");
+      queryClient.invalidateQueries(["fetch-comments"]);
+    },
+    onError: (err) => {
+      toast.error("Something went wrong.");
+    },
+  });
 
   return (
     <div className="flex flex-col">
@@ -49,10 +82,13 @@ const Comment: React.FC<CommentProps> = ({
         </div>
 
         <div className="w-full px-2 py-1.5">
-          <div className="flex items-center gap-x-2">
+          <div className="flex items-center">
             <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
               u/{comment.author.username}
             </p>
+
+            <Dot className="text-neutral-500" size={17} />
+
             <p className="max-h-40 truncate text-xs text-zinc-500">
               {createdAt}
             </p>
@@ -78,6 +114,34 @@ const Comment: React.FC<CommentProps> = ({
                 <MessageSquare size={17} strokeWidth={1.5} />
                 Reply
               </Button>
+            )}
+
+            {user?.id === comment.author.id && (
+              <AlertDialog>
+                <AlertDialogTrigger className="cursor-pointer rounded-sm p-1.5 text-sm font-semibold text-neutral-500 transition hover:bg-neutral-500 hover:bg-opacity-10">
+                  <Trash size={17} />
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete comment?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <p>
+                    Are you sure you want to delete your comment? This action is
+                    irreversible.
+                  </p>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation();
+                        deleteComment();
+                      }}
+                    >
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             )}
           </div>
 

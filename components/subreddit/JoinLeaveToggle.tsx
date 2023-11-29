@@ -8,9 +8,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/navigation";
 import { usePrevious } from "@mantine/hooks";
 
-import {
-  SubscribeToSubredditRequest,
-} from "@/libs/validators/subreddit";
+import { SubscribeToSubredditRequest } from "@/libs/validators/subreddit";
 
 import { Button } from "../ui/Button";
 

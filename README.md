@@ -17,9 +17,9 @@ Reddit clone made with NextJS 14
 » Tailwindcss
 
 **Main features:**
-* Modern data fetching using [React-Query](https://tanstack.com/query/v3/)
-* Image uploading using [Uploadthing](https://uploadthing.com)
-* Modern and functional editor using [Tiptap](https://tiptap.dev/)
-* Advanced caching with [Upstash Redis](https://upstash.com)
-* [Clerk authentication](https://clerk.com)
 
+- Modern data fetching using [React-Query](https://tanstack.com/query/v3/)
+- Image uploading using [Uploadthing](https://uploadthing.com)
+- Modern and functional editor using [Tiptap](https://tiptap.dev/)
+- Advanced caching with [Upstash Redis](https://upstash.com)
+- [Clerk authentication](https://clerk.com)

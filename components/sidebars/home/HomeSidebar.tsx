@@ -6,7 +6,6 @@ import HomeSidebarBtns from "./HomeSidebarBtns";
 import HomePageBanner from "@/public/assets/images/home-banner.png";
 import SnooHome from "@/public/assets/images/snoo-home.png";
 
-
 const HomeSidebar = () => {
   return (
     <div className="sidebar">

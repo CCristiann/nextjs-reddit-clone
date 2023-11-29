@@ -183,6 +183,7 @@ const PostVoteClient: React.FC<PostVoteClientProps> = ({
         <Button
           onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
+            vote("DOWN");
           }}
           className="rounded-sm p-0.5 md:p-1"
           variant={"ghost"}

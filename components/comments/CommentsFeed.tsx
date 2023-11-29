@@ -43,7 +43,9 @@ const CommentsFeed: React.FC<CommentsFeedProps> = ({
       async ({ pageParam = 1 }) => {
         let query;
 
-        query = `/api/subreddit/post/comment?${postId ? `postId=${postId}` : user && `userId=${user.id}`}&limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}`;
+        query = `/api/subreddit/post/comment?${
+          postId ? `postId=${postId}` : user && `userId=${user.id}`
+        }&limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}`;
 
         const { data } = await axios.get(query);
         return data;

@@ -150,7 +150,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           href="/sign-in"
           className={`${buttonVariants({
             variant: "black",
-          })} rounded-sm font-semibold`}
+          })} w-[70px] rounded-sm px-1 py-1 font-semibold md:w-[unset]`}
         >
           Sign in
         </Link>

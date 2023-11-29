@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
@@ -31,7 +30,7 @@ type UserSidebarProps = {
 
 const UserSidebar: React.FC<UserSidebarProps> = ({ user, sessionUser }) => {
   const router = useRouter();
-  const [isEditingUsername, setIsEditingUsername] = useState<boolean>(false)
+  const [isEditingUsername, setIsEditingUsername] = useState<boolean>(false);
 
   const isEditable = sessionUser.id === user.id;
 
@@ -39,7 +38,7 @@ const UserSidebar: React.FC<UserSidebarProps> = ({ user, sessionUser }) => {
     mutationKey: ["edit-user"],
     mutationFn: async ({ username }: EditUserRequest) => {
       const payload: EditUserRequest = { username };
-      
+
       const { data } = await axios.post(`/api/user/${sessionUser.id}`, payload);
       return data as User;
     },
@@ -72,7 +71,6 @@ const UserSidebar: React.FC<UserSidebarProps> = ({ user, sessionUser }) => {
     editUsername(payload);
   };
 
-
   return (
     <div className="order-first h-fit w-full overflow-hidden rounded-md bg-zinc-50 dark:bg-zinc-900 md:order-last">
       <div className="w-full flex-col space-y-2 p-3">
@@ -89,7 +87,7 @@ const UserSidebar: React.FC<UserSidebarProps> = ({ user, sessionUser }) => {
           <div className="flex flex-col space-y-1">
             <p className="font-bold ">{user.name}</p>
             <form id="username-form" onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex items-center space-x-2 text-xs -mt-2">
+              <div className="-mt-2 flex items-center space-x-2 text-xs">
                 <div className="flex">
                   <span>u/</span>
                   <Label hidden htmlFor="username" />

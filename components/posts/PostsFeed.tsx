@@ -17,7 +17,7 @@ type PostsFeedProps = {
   subredditName?: string;
   showSubreddit?: boolean;
   user?: User | null;
-  onlyUserPosts?: boolean
+  onlyUserPosts?: boolean;
 };
 
 const PostsFeed: React.FC<PostsFeedProps> = ({
@@ -25,7 +25,7 @@ const PostsFeed: React.FC<PostsFeedProps> = ({
   subredditName,
   showSubreddit,
   user,
-  onlyUserPosts
+  onlyUserPosts,
 }) => {
   const lastPostRef = useRef<HTMLLIElement>(null);
   const { ref, entry } = useIntersection({
