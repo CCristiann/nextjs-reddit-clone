@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -9,164 +9,68 @@
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
-
+ 
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-
+ 
     --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
-
+ 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
-
+ 
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-
+ 
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
-
+ 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
-
+ 
     --radius: 0.5rem;
   }
-
+ 
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-
+ 
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-
+ 
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-
+ 
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
-
+ 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-
+ 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-
+ 
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
-
+ 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
+ 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
 }
-
-*,
-html,
-body {
-  margin: 0;
-}
-
+ 
 @layer base {
   * {
     @apply border-border;
   }
-
   body {
-    @apply w-screen bg-background text-foreground;
+    @apply bg-background text-foreground;
   }
-}
-
-.page-paddings {
-  @apply px-2 lg:p-0;
-}
-
-.sidebar {
-  @apply order-first hidden h-fit w-full overflow-hidden rounded-md bg-zinc-50 dark:bg-zinc-900 md:order-last md:block;
-}
-
-.sidebar-container {
-  @apply sticky top-16 hidden h-fit overflow-hidden md:block;
-}
-
-.dropdown-menu-label {
-  @apply flex items-center gap-2 py-2.5 font-semibold text-neutral-500;
-}
-
-.dropdown-menu-item {
-  @apply py-2.5 pl-8 font-semibold text-zinc-900 dark:text-white;
-}
-
-.dropdown-menu-item__icon {
-  @apply flex items-center gap-2 py-2 font-semibold text-zinc-900 dark:text-white;
-}
-
-.dropdown-menu-item__switch {
-  @apply flex items-center justify-between rounded-md py-2.5 pl-8 pr-2 text-sm font-semibold text-zinc-900 transition-colors hover:bg-neutral-500/20 dark:text-white;
-}
-
-.dropdown-menu-separator {
-  @apply my-2.5;
-}
-
-.blue-style_btn {
-  @apply h-fit rounded-full bg-sky-600 text-sm font-bold text-zinc-50 hover:bg-[unset];
-}
-
-.black-style_btn {
-  @apply h-fit rounded-full bg-zinc-900 px-6 py-1 text-sm font-bold text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-100;
-}
-
-.white-style_btn {
-  @apply h-fit rounded-full bg-zinc-50 text-sm font-bold text-zinc-900;
-}
-
-.editorjs_code {
-  @apply h-fit w-full overflow-auto rounded-sm bg-neutral-100 p-2 text-sm dark:bg-zinc-800/60;
-}
-
-:root {
-  --test: rgb(100, 100, 100);
-  --base-color: rgb(32, 32, 32);
-}
-
-.react-loading-skeleton {
-  background-color: #202020;
-}
-
-.cl-internal-b3fm6y {
-  display: none;
-}
-
-.editor {
-  @apply min-h-[150px] w-full rounded-b-md border-x border-b border-input bg-background p-3 text-sm ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
-}
-
-.editor_heading {
-  @apply my-1.5 text-lg;
-}
-
-.editor_ordered-list {
-  @apply ml-4 list-decimal;
-}
-
-.editor_bullet-list {
-  @apply ml-4 list-disc;
-}
-
-.editor_code-block {
-  @apply h-fit w-full overflow-auto rounded-sm bg-neutral-100 p-1.5 text-xs dark:bg-zinc-800/60;
-}
-
-.editor_image {
-  @apply my-1 aspect-video rounded-md object-contain;
-}
-
-.editor_link {
-  @apply cursor-pointer text-blue-600 underline;
 }

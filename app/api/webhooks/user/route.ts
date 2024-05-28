@@ -38,21 +38,13 @@ async function handler(req: Request) {
         where: { externalId: id as string },
         create: {
           externalId: id as string,
-          name: `${
-            attributes.first_name && attributes.last_name
-              ? `${attributes.first_name} ${attributes.last_name}`
-              : null
-          }`,
+          name: `${attributes.first_name && attributes.last_name ? `${attributes.first_name} ${attributes.last_name}`: null}`,
           email: attributes.email_addresses[0].email_address,
           imageUrl: attributes.image_url,
           username: nanoid(10),
         },
         update: {
-          name: `
-            ${attributes.first_name ? attributes.first_name : ""}
-            " "
-            ${attributes.last_name ? attributes.last_name : ""}
-          `,
+          name: `${attributes.first_name ? attributes.first_name : ""}" "${attributes.last_name ? attributes.last_name : ""}`,
           email: attributes.email_addresses[0].email_address,
           imageUrl: attributes.image_url,
         },
@@ -62,21 +54,13 @@ async function handler(req: Request) {
         where: { externalId: id as string },
         create: {
           externalId: id as string,
-          name: `${
-            attributes.first_name && attributes.last_name
-              ? `${attributes.first_name} ${attributes.last_name}`
-              : null
-          }`,
+          name: `${attributes.first_name && attributes.last_name ? `${attributes.first_name} ${attributes.last_name}`: null}`,
           email: attributes.email_addresses[0].email_address,
           imageUrl: attributes.image_url,
           username: attributes.username,
         },
         update: {
-          name: `${
-            attributes.first_name && attributes.last_name
-              ? `${attributes.first_name} ${attributes.last_name}`
-              : null
-          }`,
+          name: `${attributes.first_name && attributes.last_name? `${attributes.first_name} ${attributes.last_name}`: null}`,
           email: attributes.email_addresses[0].email_address,
           imageUrl: attributes.image_url,
           username: attributes.username,
