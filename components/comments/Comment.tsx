@@ -150,7 +150,7 @@ const Comment: React.FC<CommentProps> = ({
               <CommentForm
                 postId={comment.postId}
                 actionType="reply"
-                postAuthorUsername={user.username}
+                sessionUser={user}
                 replyToId={comment.id}
                 onReply={() => setIsReplying(false)}
               />
