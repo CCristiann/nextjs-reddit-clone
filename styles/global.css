@@ -73,4 +73,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .editor {
+    @apply p-4 rounded-b-md border-b border-x focus:outline-none border-input min-h-[130px] bg-zinc-50 dark:bg-zinc-900
+  }
 }

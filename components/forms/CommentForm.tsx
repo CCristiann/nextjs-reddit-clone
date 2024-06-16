@@ -18,12 +18,14 @@ import { Button } from "../ui/Button";
 import Link from "next/link";
 import { Editor, EditorContent } from "@tiptap/react";
 import Toolbar from "../editor/Toolbar";
+import { currentUser, useUser } from "@clerk/nextjs";
+import { User } from "@prisma/client";
 
 type FormData = z.infer<typeof CommentValidator>;
 
 type CommentFormProps = {
   postId?: string;
-  postAuthorUsername: string;
+  sessionUser?: User | null;
   actionType: "comment" | "reply";
   replyToId?: string;
   onReply: () => void;
@@ -31,7 +33,7 @@ type CommentFormProps = {
 
 const CommentForm: React.FC<CommentFormProps> = ({
   postId,
-  postAuthorUsername,
+  sessionUser,
   actionType,
   replyToId,
   onReply,
@@ -114,10 +116,10 @@ const CommentForm: React.FC<CommentFormProps> = ({
       <p className="my-1.5 text-xs text-zinc-900 dark:text-zinc-50">
         Comment as&nbsp;
         <Link
-          href={`/user/${postAuthorUsername}`}
+          href={`/user/${sessionUser?.username}`}
           className="text-sky-600 hover:underline"
         >
-          {postAuthorUsername}
+          {sessionUser?.username}
         </Link>
       </p>
 

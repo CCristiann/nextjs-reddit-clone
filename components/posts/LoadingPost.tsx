@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
-import Skeleton from "react-loading-skeleton";
+import { Skeleton } from "../ui/ui/skeleton";
 
 const LoadingPost = () => {
   return (
@@ -13,23 +13,23 @@ const LoadingPost = () => {
 
       <div className="w-full p-2">
         <div className="flex items-center">
-          <Skeleton width={180} height={15} />
+          <Skeleton className="h-4 w-[180px]" />
         </div>
 
         <div className="relative my-1.5 flex flex-col items-start gap-1.5 overflow-clip">
           {/* Title */}
-          <Skeleton width={300} height={20} />
+          <Skeleton className="h-4 w-[300px]" />
 
           {/* Body */}
           <div className="w-full">
-            <Skeleton className="w-full" height={310} />
+            <Skeleton className="w-full h-[320px]" />
           </div>
         </div>
 
         <div className="z-10 w-full bg-zinc-50 dark:bg-zinc-900">
           <div className="flex items-center gap-2">
-            <Skeleton width={120} height={15} />
-            <Skeleton width={15} height={15} />
+            <Skeleton className="h-4 w-[120px]" />
+            <Skeleton className="h-4 w-4" />
           </div>
         </div>
       </div>

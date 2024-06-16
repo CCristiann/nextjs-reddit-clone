@@ -242,7 +242,7 @@ const ExtendedPost: React.FC<ExtendedPostProps> = ({
         onReply={() => {}}
         actionType="comment"
         postId={post?.id ?? cachedPost.id}
-        postAuthorUsername={post?.author.username ?? cachedPost.authorUsername}
+        sessionUser={sessionUser}
       />
     </div>
   );

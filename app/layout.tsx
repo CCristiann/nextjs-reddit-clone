@@ -1,6 +1,5 @@
 import Navbar from "@/components/navbar/Navbar";
 import "../styles/global.css";
-import "react-loading-skeleton/dist/skeleton.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -11,9 +10,7 @@ import Providers from "@/components/providers/Providers";
 import { cn } from "@/libs/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import RedditMan from "@/components/RedditMan";
-import SkeletonProvider from "@/components/providers/SkeletonProvider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,10 +56,8 @@ export default function RootLayout({
               defaultTheme="light"
               storageKey="reddit-theme"
             >
-              <SkeletonProvider>
-                <Navbar />
-                <main>{children}</main>
-              </SkeletonProvider>
+              <Navbar />
+              <main>{children}</main>
             </ThemeProvider>
           </Providers>
           <Toaster
